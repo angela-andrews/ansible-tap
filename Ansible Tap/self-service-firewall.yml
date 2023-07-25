@@ -1,0 +1,11 @@
+---
+- name: Open port a port for Firewalld
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Open port
+      ansible.posix.firewalld:
+        port:  "{{ portnumber }}/{{ proto }}"
+        permanent: yes
+        state: enabled
