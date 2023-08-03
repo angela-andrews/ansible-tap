@@ -4,7 +4,7 @@
   become: yes
   tasks:
 
-  - name: Apache enabled and running
+  - name: Apache stopped
     ansible.builtin.service:
       name: httpd
       enabled: true
@@ -23,5 +23,5 @@
   - name: Remove http from firewall
     ansible.posix.firewalld:
       service: http
+      zone: public
       state: absent
-      immediate: true
