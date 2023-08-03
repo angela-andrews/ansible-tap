@@ -1,0 +1,27 @@
+---
+- name: Remove apache 
+  hosts: all
+  become: yes
+  tasks:
+
+  - name: Apache enabled and running
+    ansible.builtin.service:
+      name: httpd
+      enabled: true
+      state: stopped
+
+  - name: Remove index.html
+    ansible.builtin.file:
+      path: /var/www/html/index.html
+      state: absent
+
+  - name: latest Apache version installed
+    ansible.builtin.dnf:
+      name: httpd
+      state: absent
+      
+  - name: Remove http from firewall
+    ansible.posix.firewalld:
+      service: http
+      state: absent
+      immediate: true
