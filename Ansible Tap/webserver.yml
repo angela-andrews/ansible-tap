@@ -18,3 +18,10 @@
     ansible.builtin.copy:
       content: "{{ ansible_facts['fqdn'] }} ({{ ansible_facts['default_ipv4'] }}) has been customized by Ansible.\n"
       dest: /var/www/html/index.html
+
+  - name: Allow http through firewall
+    ansible.posix.firewalld:
+      service: 
+      started:
+      immediate:
+      permanent: 

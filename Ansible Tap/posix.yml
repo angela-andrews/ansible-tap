@@ -1,0 +1,12 @@
+---
+- name: Checking posix
+  hosts: server01
+  become: true
+
+  tasks: 
+    - name: Is this module here
+      ansible.posix.firewalld:
+        service: sshd
+        state: enabled
+        permanent: true
+        

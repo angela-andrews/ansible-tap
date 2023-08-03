@@ -1,0 +1,20 @@
+---
+- name: Install the web server and start it
+  hosts: all
+  become: yes
+  vars:
+    httpd_packages:
+      - httpd
+      - python3-mod_wsgi
+    apache_test_message: This is a test message
+    apache_max_keep_alive_requests: 115
+
+  tasks:
+    - name: Install the apache web server
+      ansible.builtin.yum: 
+        name: "{{ httpd_packages}}"
+        state: present
+      notify: restart apache service
+
+   # more to write
+
