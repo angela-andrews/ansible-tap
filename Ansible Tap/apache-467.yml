@@ -14,7 +14,12 @@
       ansible.builtin.yum: 
         name: "{{ httpd_packages}}"
         state: present
-      notify: restart apache service
+     
+    - name: start web server service
+      ansible.builtin.service:
+        name: httpd
+        state: started
+        enabled: true
 
   tasks:
     #- name: Generate apache's configuration file from jinja2 template
