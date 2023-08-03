@@ -14,7 +14,7 @@
       enabled: true
       state: started
       
-  - name: Create teset web page
+  - name: Create test web page
     ansible.builtin.copy:
       content: "{{ ansible_facts['fqdn'] }} ({{ ansible_facts['default_ipv4'] }}) has been customized by Ansible.\n"
       dest: /var/www/html/index.html
