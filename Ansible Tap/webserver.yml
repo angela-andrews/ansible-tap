@@ -4,7 +4,7 @@
   become: yes
   tasks:
   - name: latest Apache version installed
-    ansible.builtin.yum:
+    ansible.builtin.dnf:
       name: httpd
       state: latest
 
@@ -14,14 +14,14 @@
       enabled: true
       state: started
       
-  - name: copy web.html
+  - name: Create teset web page
     ansible.builtin.copy:
       content: "{{ ansible_facts['fqdn'] }} ({{ ansible_facts['default_ipv4'] }}) has been customized by Ansible.\n"
       dest: /var/www/html/index.html
 
   - name: Allow http through firewall
     ansible.posix.firewalld:
-      service: 
-      started:
-      immediate:
-      permanent: 
+      service: http
+      state: enabled
+      immediate: true
+      permanent: true
