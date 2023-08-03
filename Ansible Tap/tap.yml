@@ -1,0 +1,7 @@
+---
+- name: Tap demo
+  hosts: localhost
+  become: true
+  tasks:
+  - name: ping
+    ansible.builtin.ping:
