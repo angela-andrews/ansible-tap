@@ -6,7 +6,7 @@
   tasks: 
     - name: Is this module here
       ansible.posix.firewalld:
-        service: sshd
+        service: ssh
         state: enabled
         permanent: true
         
